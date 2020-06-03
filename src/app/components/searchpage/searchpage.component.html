@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="row">
+     <div class="col-md-12">
+        <form #F="ngForm"  (ngSubmit)="companySearch(F.value)">
+        <div class="d-flex flex-row">
+            <div class="p-2">
+                <input type="text" placeholder="Search Term" class="form-control" 
+                 [(ngModel)]="Model.companyName" name="companyName" 
+                 required 
+                 #companyName="ngModel"
+                  >
+                <div *ngIf="companyName.invalid && (companyName.dirty || companyName.touched)"
+                        class="alert alert-danger">
+                    <div *ngIf="companyName.errors.required">
+                        Name is required.
+                    </div>
+                </div>
+                </div>
+            <div class="p-2">
+            <select class="form-control" [(ngModel)]="exchangeName" name="exchangeName">
+                <option >Select</option>
+                <option *ngFor="let data of allDataUniqe">{{data}}</option>  
+            </select>
+            </div>
+            <div class="p-2"><select class="form-control" name="" id="">
+                <option >10</option>  
+            </select>
+            </div>
+            <div class="p-2">
+                <button type="submit" class="btn btn-primary" >Search Company</button>
+            </div>
+
+        </div>
+        </form>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Symbol</th>
+                <th scope="col">Name</th>
+                <th scope="col">Currency</th>
+                <th scope="col">StockExchange</th>
+                <th scope="col">ExchangeShortName</th>
+                <th scope="col">Details</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of allDataResult" >
+                
+                <td>{{data.symbol}}</td>
+                <td>{{data.name}}</td>
+                <td>{{data.currency}}</td>
+                <td>{{data.stockExchange}}</td>
+                <td>{{data.exchangeShortName}}</td>
+                <td><button type="button" (click)="download()" class="btn btn-link">Download Statment</button></td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+    </div>
