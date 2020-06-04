@@ -53,7 +53,7 @@ export class SearchpageComponent implements OnInit {
   companySearch(data){
     
     this.allDataResult =this.allData.filter(item => 
-    item.name.includes(data.companyName) && item.stockExchange.includes(data.exchangeName))
+    item.name.includes(data.companyName) || item.stockExchange.includes(data.exchangeName))
    
   }
  
