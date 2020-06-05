@@ -49,12 +49,17 @@ export class SearchpageComponent implements OnInit {
   }
 
   
-  //Filter
+  //Filter code 
   companySearch(data){
-    
+    if (data.companyName==undefined && data.exchangeName==undefined){
+      alert("Please provide value for Name or ExchangeShortName")
+    }else if (data.companyName!=undefined && data.exchangeName!=undefined) {
+      this.allDataResult =this.allData.filter(item => 
+        item.name.includes(data.companyName) && item.stockExchange.includes(data.exchangeName))
+    } else {
     this.allDataResult =this.allData.filter(item => 
     item.name.includes(data.companyName) || item.stockExchange.includes(data.exchangeName))
-   
+    }
   }
  
 }
